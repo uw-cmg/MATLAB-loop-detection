@@ -8,7 +8,7 @@ The project has three types of files: functions, scripts and data folders. Funct
 
 ## Source Code
 
-1. Scripts
+## Scripts
 
 To get started with the project, please go through all the scripts to get a detailed understanding of the complete workflow. The scripts can be run step-by-step with instant results in the workspace, as well as command line window. The scripts calls both the built-in functions in Matlab and self-developed functions for this project. The figure below is a list of all the scripts written, while the left column is the categories that these scripts belong to. When all the data folder is present as the original folder, all the scripts can run independently. (that is, you can try any script without running the previous scripts.) All the categories are sorted in a sequential way.
 
