@@ -140,17 +140,17 @@ Here is the complete workflow on how this project works (without the CNN trainin
 
 The positive images are stored in the positive image data folders, while negative images are stored in the negative image data folders.
 
-..* To generate negative image from positive images by making patches, run script “negImGen.m”.
+* To generate negative image from positive images by making patches, run script “negImGen.m”.
 
-..* To augment the existing dataset, run script “imageAugmentation.m” and “negImgAugmentation.m”. Remember to change the directory name and move images to specified folder if needed. 
+* To augment the existing dataset, run script “imageAugmentation.m” and “negImgAugmentation.m”. Remember to change the directory name and move images to specified folder if needed. 
 
-..* Cascade Object detector is trained in the scripts in “Train Cascade Object Detector” category.
+* Cascade Object detector is trained in the scripts in “Train Cascade Object Detector” category.
 
-..* The testing process is done in the scripts
+* The testing process is done in the scripts
 
-..* The CNN model is loaded in the screening step. See more information in the mlscreen() function. 
+* The CNN model is loaded in the screening step. See more information in the mlscreen() function. 
 
-..* The testing script is in the script testImageSet and function testImages(). Please read through all the code in those two files to get a detailed information of how it test the images and get the scores.
+* The testing script is in the script testImageSet and function testImages(). Please read through all the code in those two files to get a detailed information of how it test the images and get the scores.
 
 ## Miscellaneous
 Currently all the source code are put under Mathlab_Source_Code. To run the code correctly, all the code should be placed in the same project folder where all the data folders exists, i.e. the parent folder of the Matlab_Source_Code folder.
