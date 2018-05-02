@@ -85,53 +85,34 @@ thumbnails = imresize(thumbnails, [64 64]);
 montage(thumbnails)
 
 %% Step 5: Construct simple CNN strucuture
-% Create the image input layer for 32x32x3 CIFAR-10 images
+
 [height, width, numChannels, ~] = size(largeSet2);
 
 imageSize = [height width numChannels];
 inputLayer = imageInputLayer(imageSize)
 %%
 % Convolutional layer parameters
-filterSize = [5 5];
-%filterSize2 = [3 3];
+filterSize = [10 10];
+
 numFilters = 64;
 
 middleLayers = [
 
-% The first convolutional layer has a bank of 32 5x5x3 filters. A
-% symmetric padding of 2 pixels is added to ensure that image borders
-% are included in the processing. This is important to avoid
-% information at the borders being washed away too early in the
-% network.
-convolution2dLayer(filterSize, numFilters, 'Padding', 2)
 
-% Note that the third dimension of the filter can be omitted because it
-% is automatically deduced based on the connectivity of the network. In
-% this case because this layer follows the image layer, the third
-% dimension must be 3 to match the number of channels in the input
-% image.
+convolution2dLayer(filterSize, numFilters, 'Stride', 6, 'Padding', 0)
 
 % Next add the ReLU layer:
 reluLayer()
-%crossChannelNormalizationLayer(3)
+
 maxPooling2dLayer(3, 'Stride', 2)
 
-% convolution2dLayer(filterSize2, numFilters*2, 'Padding', 1)
-% reluLayer()
-
-% convolution2dLayer(filterSize2, numFilters*3, 'Padding', 1)
-% reluLayer()
-% Follow it with a max pooling layer that has a 3x3 spatial pooling area
-% and a stride of 2 pixels. This down-samples the data dimensions from
-% 32x32 to 15x15.
-% maxPooling2dLayer(2, 'Stride', 2)
 
 % Repeat the 3 core layers to complete the middle of the network.
-convolution2dLayer(filterSize, numFilters, 'Padding', 1)
+convolution2dLayer(filterSize, numFilters, 'Stride', 6, 'Padding', 0)
 reluLayer()
 maxPooling2dLayer(3, 'Stride',2)
 
-convolution2dLayer(filterSize, 2 * numFilters, 'Padding', 1)
+convolution2dLayer(filterSize, numFilters, 'Stride', 6, 'Padding', 0)
 reluLayer()
 maxPooling2dLayer(3, 'Stride',2)
 
@@ -145,11 +126,7 @@ fullyConnectedLayer(64)
 
 % Add an ReLU non-linearity.
 reluLayer()
-%dropoutLayer(0.5)
-% Add the last fully connected layer. At this point, the network must
-% produce 10 signals that can be used to measure whether the input image
-% belongs to one category or another. This measurement is made using the
-% subsequent loss layers.
+
 fullyConnectedLayer(numImageCategories)
 
 % Add the softmax loss layer and classification layer. The final layers use
